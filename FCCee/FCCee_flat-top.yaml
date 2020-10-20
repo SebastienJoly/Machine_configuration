@@ -1,0 +1,18 @@
+Ring Parameters:
+    name: FCCee
+    year: 2017
+    state: flat-top
+    circumference: 97750.0
+Beam Parameters:
+    particle_name: Electron
+    E_kinetic: 45.48e+9
+    harmonic: 166400
+    RF_voltage: 12.0e+6
+    taub: 1.167e-11
+    M: 16640
+    en: 2.5e-6
+    Qx: 269.22
+    Qy: 270.23
+    alphap: 1.48e-5
+    synchrotron_phase: 0.0
+    typelong: Gaussian

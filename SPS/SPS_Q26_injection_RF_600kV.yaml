@@ -1,0 +1,20 @@
+# Parameters file for the SPS at injection energy
+# used for LHC beam with old working point (Q26).
+# Paramters used by B.Salvant for MOSES simulations
+# Ref.: B.Salvant, "Impedance model of the CERN SPS and aspects of
+# LHC single-bunch stability", EPFL Thesis 4585, Lausanne, 2010
+Ring Parameters:
+    name: SPS
+    year: 2017
+    state: injection
+    circumference: 6911.50
+Beam Parameters:
+    particle_name: Proton
+    gamma: 27.7
+    harmonic: 4620
+    RF_voltage: 600.0e+3
+    taub: 2.8e-9
+    Qx: 26.13
+    Qy: 26.18
+    alphap: 1.92e-3
+    synchrotron_phase: 0.0

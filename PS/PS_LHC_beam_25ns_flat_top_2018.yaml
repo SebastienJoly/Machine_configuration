@@ -1,0 +1,18 @@
+Ring Parameters:
+    name: PS
+    circumference: 628.3185
+    year: 2018
+    state: flat top
+    comment: LHC proton 25 ns spacing beam
+Beam Parameters:
+    particle_name: Proton
+    E_kinetic: 25.1e+9
+    harmonic: 84
+    RF_voltage: 100.0e+3
+    taub: 11.2e-9
+    M: 1
+    en: 2.5e-6
+    Qx: 6.26
+    Qy: 6.22
+    alphap: 0.02706
+    synchrotron_phase: 0.0

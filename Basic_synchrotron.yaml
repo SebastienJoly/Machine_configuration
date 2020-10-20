@@ -1,0 +1,18 @@
+# Example of a beam parameters file used by the Synchrotron class
+# to create a machine object
+# The circumference can be replace by the machine radius,
+# the gamma can be replaced by the beam kinetic energy
+Ring Parameters:
+    name: Example Synchrotron
+    circumference: 628.3185
+Beam Parameters:
+    particle_name: Proton
+    gamma: 27.7e+9
+    harmonic: 2
+    RF_voltage: 100.0e+3
+    en: 2.5e-6
+    Qx: 6.205
+    Qy: 6.295
+    alphap: 0.02706
+    taub: 4.0e-9
+    synchrotron_phase: 0.0

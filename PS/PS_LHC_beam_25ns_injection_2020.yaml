@@ -1,0 +1,18 @@
+Ring Parameters:
+    name: PS
+    circumference: 628.3185
+    year: 2020
+    state: injection
+    comment: LHC proton 25 ns spacing beam
+Beam Parameters:
+    particle_name: Proton
+    E_kinetic: 2.0e+9
+    harmonic: 7
+    RF_voltage: 20.15e+3
+    taub: 2.05e-7
+    M: 1
+    en: 1.8e-6
+    Qx: 6.21
+    Qy: 6.25
+    alphap: 0.02706
+    synchrotron_phase: 0.0

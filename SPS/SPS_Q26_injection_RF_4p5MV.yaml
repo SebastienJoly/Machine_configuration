@@ -1,0 +1,25 @@
+# Paramters file for the SPS at injection energy
+# Used for LHC beams with old working point (Q26)
+# The RMS bunch length corresponds to 3.0ns full bunch length
+# THE RF voltage corresponds to the high intensity MDs performed in 2017
+# This file is for the study of horizontal head-tail instability observed
+# during these MDs, as a comparison point for simulations with Q20 optics.
+# Ref.: H.Bartosik, "Beam dynamics and optics 
+#studies for the LHC injectors upgrade", TU Vienna, CERN-THESIS-2013-257, 2013
+Ring Parameters:
+    name: SPS
+    year: 2017
+    state: injection
+    circumference: 6911.50
+Beam Parameters:
+    particle_name: Proton
+    gamma: 27.7
+    harmonic: 4620
+    RF_voltage: 4.5e+6
+    sigmaz: 0.225
+    M: 1
+    en: 2.5e-6
+    Qx: 26.13
+    Qy: 26.18
+    alphap: 0.001924
+    synchrotron_phase: 0.0

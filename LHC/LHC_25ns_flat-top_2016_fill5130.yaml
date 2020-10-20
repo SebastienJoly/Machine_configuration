@@ -1,0 +1,18 @@
+Ring Parameters:
+    name: LHC
+    year: 2017
+    state: flat-top
+    circumference: 26658.883
+Beam Parameters:
+    particle_name: Proton
+    beam_number: 2
+    E_kinetic: 6500.0e+9
+    harmonic: 35640
+    RF_voltage: 12.0e+6
+    taub: 0.89e-9
+    M: 2764
+    en: 2.5e-6
+    Qx: 62.31
+    Qy: 60.32
+    alphap: 3.479e-4
+    synchrotron_phase: 0.0

@@ -1,0 +1,18 @@
+Ring Parameters:
+    name: PS
+    circumference: 628.3185
+    year: 2018
+    state: flat top
+    comment: nTOF 2018 MD beam
+Beam Parameters:
+    particle_name: Proton
+    E_kinetic: 25.1e+9
+    harmonic: 8
+    RF_voltage: 200.0e+3
+    taub: 45.0e-9
+    M: 1
+    en: 5e-6
+    Qx: 6.22
+    Qy: 6.22
+    alphap: 0.0533
+    synchrotron_phase: 0.0
