@@ -63,12 +63,19 @@ class Synchrotron(object):
     alphap: float
         Momentum compaction factor of the machine. It is taken from the
         YAML file.
+    eta: float
+        Slippage factor of the machine. It is taken from the
+        YAML file.
     Qx, Qy: floats
         Transverse betatron tunes taken from the YAML file. They can be
         overwritten by the user.
     Qxfrac, Qyfrac: floats
         Fractionnal part of the transverse betatron tunes computed from
         the transverse tunes
+    beta_x, beta_y: floats
+        Transverse beta functions taken from the YAML file. They can be
+        overwritten by the user. Smooth optics approximation is used if they
+        are not given.
 
     Example
     -------
@@ -287,6 +294,14 @@ class Synchrotron(object):
     @sigmaz.setter
     def sigmaz(self, value):
         self.taub = 4 * value / (self._beta * self.particle.c)
+        
+    @property
+    def eta(self):
+        return self.alphap - 1/self.gamma**2
+
+    @eta.setter
+    def eta(self, value):
+        self._eta = value
 
     def _read_parameters_file(self, file_path):
         with open(file_path) as yaml_file:
