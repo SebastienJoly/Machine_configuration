@@ -63,12 +63,19 @@ class Synchrotron(object):
     alphap: float
         Momentum compaction factor of the machine. It is taken from the
         YAML file.
+    eta: float
+        Slippage factor of the machine. It is taken from the
+        YAML file.
     Qx, Qy: floats
         Transverse betatron tunes taken from the YAML file. They can be
         overwritten by the user.
     Qxfrac, Qyfrac: floats
         Fractionnal part of the transverse betatron tunes computed from
         the transverse tunes
+    beta_x, beta_y: floats
+        Transverse beta functions taken from the YAML file. They can be
+        overwritten by the user. Smooth optics approximation is used if they
+        are not given.
 
     Example
     -------
@@ -97,6 +104,7 @@ class Synchrotron(object):
         self._compute_ring_geometry()
         self._compute_kinetic_parameters()
         self._set_alphap()
+        self._set_beta_function()
         self._set_synchrotron_tune()
         self._set_bunch_length()
 
@@ -223,6 +231,7 @@ class Synchrotron(object):
     def Qx(self, value):
         warnings.warn('Overwriting the H transverse tune', UserWarning)
         self._Qx = value
+        self.beta_x = self.circumference / 2 / np.pi / value
 
     @property
     def Qy(self):
@@ -235,6 +244,7 @@ class Synchrotron(object):
     def Qy(self, value):
         warnings.warn('Overwriting the V transverse tune', UserWarning)
         self._Qy = value
+        self.beta_y = self.circumference / 2 / np.pi / value
 
     @property
     def Qxfrac(self):
@@ -243,7 +253,29 @@ class Synchrotron(object):
     @property
     def Qyfrac(self):
         return self.Qy - np.floor(self.Qy)
+    
+    @property
+    def beta_x(self):
+        if hasattr(self, '_beta_x'):
+            return self._beta_x
+        else:
+            return self._parameters['Beam Parameters']['beta_x']
+        
+    @beta_x.setter
+    def beta_x(self, value):
+        self._beta_x = value
 
+    @property
+    def beta_y(self):
+        if hasattr(self, '_beta_y'):
+            return self._beta_y
+        else:
+            return self._parameters['Beam Parameters']['beta_y']
+        
+    @beta_y.setter
+    def beta_y(self, value):
+        self._beta_y = value
+        
     @property
     def taub(self):
         if hasattr(self, '_taub'):
@@ -262,6 +294,14 @@ class Synchrotron(object):
     @sigmaz.setter
     def sigmaz(self, value):
         self.taub = 4 * value / (self._beta * self.particle.c)
+        
+    @property
+    def eta(self):
+        return self.alphap - 1/self.gamma**2
+
+    @eta.setter
+    def eta(self, value):
+        self._eta = value
 
     def _read_parameters_file(self, file_path):
         with open(file_path) as yaml_file:
@@ -295,6 +335,27 @@ class Synchrotron(object):
             self.alphap = self._parameters['Beam Parameters']['alphap']
         except KeyError:
             raise ValueError('No momentum compaction factor found')
+            
+    def _set_beta_function(self):
+        """Check if beta functions are present at initialization"""
+        try:
+            self.beta_x = self._parameters['Beam Parameters']['beta_x']
+        except KeyError:
+            print('No beta function found for H plane, smooth optics approximation '
+                  'used instead')
+            try:
+                self.Qx = self._parameters['Beam Parameters']['Qx']
+            except KeyError:
+                raise ValueError('No beta function or tune given for H plane')
+        try:
+            self.beta_y = self._parameters['Beam Parameters']['beta_y']
+        except KeyError:
+            print('No beta function found for V plane, smooth optics approximation '
+                  'used instead')
+            try:
+                self.Qy = self._parameters['Beam Parameters']['Qy']
+            except KeyError:
+                raise ValueError('No beta function or tune given for V plane')
 
     def _set_synchrotron_tune(self):
         """Set the synchrotron tune at the object initialization."""
